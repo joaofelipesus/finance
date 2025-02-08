@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+main_account:
+  name: Main account
+  amount: 10_000.00
+
+investment_account:
+  name: Investment account
+  amount: 5_000.00
