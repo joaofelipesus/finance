@@ -23,5 +23,10 @@ module Finance
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # generate only erb files on scaffold.
+    config.generators do |g|
+      g.jbuilder false
+    end
   end
 end
