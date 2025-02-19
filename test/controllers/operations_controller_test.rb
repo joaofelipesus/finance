@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class OperationsControllerTest < ActionDispatch::IntegrationTest
@@ -17,7 +19,9 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create operation" do
     assert_difference("Operation.count") do
-      post operations_url, params: { operation: { account_id: @operation.account_id, date: @operation.date, description: @operation.description, kind: @operation.kind, value: @operation.value } }
+      post operations_url,
+params: { operation: { account_id: @operation.account_id, date: @operation.date, description: @operation.description,
+kind: @operation.kind, value: @operation.value } }
     end
 
     assert_redirected_to operation_url(Operation.last)
@@ -34,7 +38,9 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update operation" do
-    patch operation_url(@operation), params: { operation: { account_id: @operation.account_id, date: @operation.date, description: @operation.description, kind: @operation.kind, value: @operation.value } }
+    patch operation_url(@operation),
+params: { operation: { account_id: @operation.account_id, date: @operation.date, description: @operation.description,
+kind: @operation.kind, value: @operation.value } }
     assert_redirected_to operation_url(@operation)
   end
 
