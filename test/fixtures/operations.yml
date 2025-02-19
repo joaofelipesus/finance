@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  kind: MyString
-  value: 9.99
-  description: MyText
-  account: one
-  date: 2025-02-19 23:49:22
+  kind: earning
+  value: 1_900.00
+  description: salary
+  account: main_account
+  date: 2025-02-01
 
 two:
-  kind: MyString
-  value: 9.99
-  description: MyText
-  account: two
-  date: 2025-02-19 23:49:22
+  kind: spending
+  value: 200.00
+  description: Buy new shoes
+  account: main_account
+  date: 2025-02-15

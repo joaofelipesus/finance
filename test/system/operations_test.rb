@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "application_system_test_case"
 
 class OperationsTest < ApplicationSystemTestCase
@@ -32,7 +30,7 @@ class OperationsTest < ApplicationSystemTestCase
     click_on "Edit this operation", match: :first
 
     fill_in "Account", with: @operation.account_id
-    fill_in "Date", with: @operation.date.to_s
+    fill_in "Date", with: @operation.date
     fill_in "Description", with: @operation.description
     fill_in "Kind", with: @operation.kind
     fill_in "Value", with: @operation.value

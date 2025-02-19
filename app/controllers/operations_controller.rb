@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class OperationsController < ApplicationController
   before_action :set_operation, only: %i[ show edit update destroy ]
 
