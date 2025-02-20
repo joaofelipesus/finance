@@ -1,14 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  kind: earning
+salary_payment:
+  kind: salary
   value: 1_900.00
   description: salary
   account: main_account
   date: 2025-02-01
 
-two:
-  kind: spending
+new_shoes_operation:
+  kind: spend
   value: 200.00
   description: Buy new shoes
   account: main_account

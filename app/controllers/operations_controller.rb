@@ -25,27 +25,20 @@ class OperationsController < ApplicationController
   def create
     @operation = Operation.new(operation_params)
 
-    respond_to do |format|
-      if @operation.save
-        format.html { redirect_to @operation, notice: "Operation was successfully created." }
-        format.json { render :show, status: :created, location: @operation }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @operation.errors, status: :unprocessable_entity }
-      end
+    if @operation.save
+      redirect_to @operation, notice: "Operation was successfully created."
+    else
+      debugger
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /operations/1 or /operations/1.json
   def update
-    respond_to do |format|
-      if @operation.update(operation_params)
-        format.html { redirect_to @operation, notice: "Operation was successfully updated." }
-        format.json { render :show, status: :ok, location: @operation }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @operation.errors, status: :unprocessable_entity }
-      end
+    if @operation.update(operation_params)
+      redirect_to @operation, notice: "Operation was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -53,20 +46,18 @@ class OperationsController < ApplicationController
   def destroy
     @operation.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to operations_path, status: :see_other, notice: "Operation was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to operations_path, status: :see_other, notice: "Operation was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_operation
-      @operation = Operation.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def operation_params
-      params.expect(operation: [ :kind, :value, :description, :account_id, :date ])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_operation
+    @operation = Operation.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def operation_params
+    params.expect(operation: [ :kind, :value, :description, :account_id, :date ])
+  end
 end
