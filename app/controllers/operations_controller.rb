@@ -28,7 +28,6 @@ class OperationsController < ApplicationController
     if @operation.save
       redirect_to @operation, notice: "Operation was successfully created."
     else
-      debugger
       render :new, status: :unprocessable_entity
     end
   end

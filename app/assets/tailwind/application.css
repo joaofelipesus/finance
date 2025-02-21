@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+.form-item {
+  @apply block shadow-sm rounded-md border outline-hidden px-3 py-2 mt-2 w-full;
+}
+
+.form-item--valid {
+  @apply border-gray-400 focus:outline-blue-600;
+}
+
+.form-item--invalid {
+  @apply border-red-400 focus:outline-red-600;
+}
+
+.form-button {
+  @apply rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer;
+}
