@@ -1,0 +1,97 @@
+<div id="operation-form">
+  <%= form_with(url: create_operation_home_path,model: operation, class: "contents") do |form| %>
+    <% if operation.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+        <h2><%= pluralize(operation.errors.count, "error") %> prohibited this operation from being saved:</h2>
+
+        <ul class="list-disc ml-6">
+          <% operation.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="my-5">
+      <%= form.label :kind %>
+      <%=
+        form.select :kind,
+          options_for_select(Operation::KIND_OPTIONS),
+          { include_blank: true},
+          {
+            class: [
+              "form-item",
+              {
+                "form-item--valid": operation.errors[:kind].none?,
+                "form-item--invalid": operation.errors[:kind].any?
+              }
+            ]
+          }
+      %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :value %>
+      <%=
+        form.text_field :value,
+          class: [
+            "form-item",
+            {
+              "form-item--valid": operation.errors[:value].none?,
+              "form-item--invalid": operation.errors[:value].any?
+            }
+          ]
+      %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :description %>
+      <%=
+        form.textarea :description,
+          rows: 4,
+          class: [
+            "form-item", {
+              "form-item--valid": operation.errors[:description].none?,
+              "form-item--invalid": operation.errors[:description].any?
+            }
+          ]
+      %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :account_id %>
+      <%=
+        form.select :account_id,
+            options_from_collection_for_select(Account.order(name: :asc), :id, :name),
+          { include_blank: true },
+          {
+            class: [
+              "form-item", {
+                "form-item--valid": operation.errors[:account_id].none?,
+                "form-item--invalid": operation.errors[:account_id].any?
+              }
+            ]
+          }
+      %>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :date %>
+      <%=
+        form.date_field :date,
+          class: [
+            "form-item",
+            {
+              "form-item--valid": operation.errors[:date].none?,
+              "form-item--invalid": operation.errors[:date].any?
+            }
+          ],
+          value: Date.current
+      %>
+    </div>
+
+    <div class="inline">
+      <%= form.submit class: "form-button" %>
+    </div>
+  <% end %>
+</div>
