@@ -1,0 +1,30 @@
+<div id="operations-table">
+  <table>
+    <thead>
+      <th>Account</th>
+      <th>Kind</th>
+      <th>Date</th>
+      <th>Value</th>
+    </thead>
+    <tbody>
+      <% operations.each do |operation| %>
+        <tr>
+          <td><%= operation.account.name %></td>
+          <td><%= operation.kind %></td>
+          <td><%= operation.date %></td>
+          <td><%= operation.value %></td>
+          <td><%= link_to "Details", operation %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <% (1..(Operation.count / HomeController::OPERATION_PAGE_SIZE)).each do |page_index| %>
+          <td>
+            <%= link_to page_index, home_path(page: page_index) %>
+          </td>
+        <% end %>
+      </tr>
+    </tfoot>
+  </table>
+</div>
