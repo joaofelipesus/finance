@@ -1,0 +1,3 @@
+<div id="chart">
+  <%= pie_chart Operation.group(:kind).sum(:value) %>
+</div>

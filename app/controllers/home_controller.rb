@@ -17,7 +17,8 @@ class HomeController < ApplicationController
       render turbo_stream: [
         update_operation_form,
         success_message,
-        update_operations_table
+        update_operations_table,
+        update_chart
       ]
     else
       # TODO: handle errors
@@ -43,7 +44,7 @@ class HomeController < ApplicationController
       page_offset = params[:page].to_i * OPERATION_PAGE_SIZE
     end
 
-    Operation.order(created_at: :desc).limit(OPERATION_PAGE_SIZE).offset(page_offset)
+    Operation.includes(:account).order(created_at: :desc).limit(OPERATION_PAGE_SIZE).offset(page_offset)
   end
 
   def update_operation_form
@@ -67,6 +68,13 @@ class HomeController < ApplicationController
       'operations-table',
       partial: 'home/components/operations_table',
       locals: { operations: fetch_operations, page: OPERATION_PAGE_SIZE }
+    )
+  end
+
+  def update_chart
+    turbo_stream.replace(
+      'chart',
+      partial: 'home/components/chart'
     )
   end
 end
