@@ -5,4 +5,12 @@
   <p>Find me in app/views/home/index.html.erb</p>
 
   <%= render partial: "home/components/operation_form", locals: { operation: @operation } %>
+
+  <%=
+    render partial: "home/components/operations_table",
+      locals: {
+        operations: @operations,
+        page: @page
+      }
+    %>
 </div>
