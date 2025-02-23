@@ -8,9 +8,9 @@ class Operation < ApplicationRecord
   }.freeze
 
   KIND_COLORS = {
-    "spend" => "#FF0000",    # Red
-    "earning" => "#00FF00",  # Green
-    "investment" => "#0000FF" # Blue
+    "spend" => "#E74C3C",    # Red
+    "earning" => "#2ECC71",  # Green
+    "investment" => "#3498DB" # Blue
   }
 
   belongs_to :account
