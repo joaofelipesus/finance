@@ -1,10 +1,13 @@
 <div id="operations-table">
-  <table>
+  <table class="simple-table">
     <thead>
-      <th>Account</th>
-      <th>Kind</th>
-      <th>Date</th>
-      <th>Value</th>
+      <tr>
+        <th>Account</th>
+        <th>Kind</th>
+        <th>Date</th>
+        <th>Value</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
       <% operations.each do |operation| %>
@@ -13,17 +16,21 @@
           <td><%= operation.kind %></td>
           <td><%= operation.date %></td>
           <td><%= operation.value %></td>
-          <td><%= link_to "Details", operation %></td>
+          <td class="text-sm font-medium">
+            <%= link_to "Details", operation, class: "text-indigo-600 hover:text-indigo-900" %>
+          </td>
         </tr>
       <% end %>
     </tbody>
-    <tfoot>
+    <tfoot class="bg-gray-50 w-full">
       <tr>
+      <td colspan="5" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+        <div class="flex space-x-2">
         <% (1..(Operation.count / HomeController::OPERATION_PAGE_SIZE)).each do |page_index| %>
-          <td>
-            <%= link_to page_index, home_path(page: page_index) %>
-          </td>
+          <%= link_to page_index, home_path(page: page_index), class: "text-indigo-600 hover:text-indigo-900" %>
         <% end %>
+        </div>
+      </td>
       </tr>
     </tfoot>
   </table>

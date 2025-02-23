@@ -1,4 +1,8 @@
-<div id="operation-form">
+<div id="operation-form" class="bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold mb-4">
+    Add new operation
+  </h2>
+
   <%= form_with(url: create_operation_home_path,model: operation, class: "contents") do |form| %>
     <% if operation.errors.any? %>
       <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">

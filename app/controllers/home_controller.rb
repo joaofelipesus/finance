@@ -23,9 +23,9 @@ class HomeController < ApplicationController
     else
       # TODO: handle errors
       render turbo_stream: turbo_stream.replace(
-        'operation-form',
-        partial: 'home/components/operation_form',
-        locals: { operation: Operation.new }
+        "operation-form",
+        partial: "home/components/operation_form",
+        locals: { operation: operation }
       )
     end
   end
@@ -49,32 +49,32 @@ class HomeController < ApplicationController
 
   def update_operation_form
     turbo_stream.replace(
-      'operation-form',
-      partial: 'home/components/operation_form',
+      "operation-form",
+      partial: "home/components/operation_form",
       locals: { operation: Operation.new }
     )
   end
 
   def success_message
     turbo_stream.replace(
-      'success-message',
-      partial: 'home/components/success_message',
+      "success-message",
+      partial: "home/components/success_message",
       locals: { message: "Operation created" }
     )
   end
 
   def update_operations_table
     turbo_stream.replace(
-      'operations-table',
-      partial: 'home/components/operations_table',
+      "operations-table",
+      partial: "home/components/operations_table",
       locals: { operations: fetch_operations, page: OPERATION_PAGE_SIZE }
     )
   end
 
   def update_chart
     turbo_stream.replace(
-      'chart',
-      partial: 'home/components/chart'
+      "chart",
+      partial: "home/components/chart"
     )
   end
 end
