@@ -1,0 +1,8 @@
+- Stryle Accounts views (show, index, new, edit);
+- Stryle Operations views (show, index, new, edit);
+- Add coverage to home controller, new operation form;
+- Filter home data by date period, group by date (month);
+- Stryle Categories views (show, index, new, edit);
+- Use categories on operations;
+- Add detailed reports;
+- Add i18n.
