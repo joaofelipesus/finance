@@ -25,7 +25,7 @@ class HomeController < ApplicationController
       render turbo_stream: turbo_stream.replace(
         'operation-form',
         partial: 'home/components/operation_form',
-        locals: { operation: Operation.new }
+        locals: { operation: operation }
       )
     end
   end
