@@ -41,3 +41,10 @@ plugin :solid_queue if ENV["SOLID_QUEUE_IN_PUMA"]
 # Specify the PID file. Defaults to tmp/pids/server.pid in development.
 # In other environments, only set the PID file if requested.
 pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
+
+# Bind SSL port to deploy app on self hosted environment.
+ssl_bind '0.0.0.0', '3001', {
+  key: 'config/ssl/server.key',
+  cert: 'config/ssl/server.crt',
+  verify_mode: 'none'
+}
