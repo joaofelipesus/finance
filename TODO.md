@@ -6,3 +6,4 @@
 - Use categories on operations;
 - Add detailed reports;
 - Add i18n.
+- Add README.
