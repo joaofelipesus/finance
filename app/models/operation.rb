@@ -11,7 +11,7 @@ class Operation < ApplicationRecord
     "spend" => "#E74C3C",    # Red
     "earning" => "#2ECC71",  # Green
     "investment" => "#3498DB" # Blue
-  }
+  }.freeze
 
   belongs_to :account
 
