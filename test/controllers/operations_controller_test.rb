@@ -18,6 +18,8 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create operation" do
+    account_initial_amount = @operation.account.amount
+
     assert_difference("Operation.count") do
       post(
         operations_url,
@@ -34,6 +36,7 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
       )
     end
 
+    assert_equal @operation.account.reload.amount, account_initial_amount - @operation.value
     assert_redirected_to operation_url(Operation.last)
   end
 

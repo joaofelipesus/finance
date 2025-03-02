@@ -24,9 +24,9 @@ class OperationsController < ApplicationController
 
   # POST /operations or /operations.json
   def create
-    @operation = Operation.new(operation_params)
+    @operation = Operation.create_and_update_account(operation_params)
 
-    if @operation.save
+    if @operation.valid?
       redirect_to @operation, notice: "Operation was successfully created."
     else
       render :new, status: :unprocessable_entity
