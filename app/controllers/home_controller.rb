@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
   # TODO: add coverage
   def create_operation
-    operation = Operation.new(operation_params)
+    operation = Operation.create_and_update_account(operation_params)
 
     if operation.save
       render turbo_stream: [
