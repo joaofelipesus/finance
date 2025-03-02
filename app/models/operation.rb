@@ -19,6 +19,12 @@ class Operation < ApplicationRecord
     pix: "pix"
   }.freeze
 
+  VALUE_COLORS = {
+    "spend" => "red",
+    "earning" => "green",
+    "investment" => "blue"
+  }.freeze
+
   belongs_to :account
 
   validates :value, :kind, :date, :payment_method, presence: true
@@ -27,16 +33,6 @@ class Operation < ApplicationRecord
   enum :payment_method, PAYMENT_METHOD_OPETIONS
 
   def display_value
-    css_class = if spend?
-      "text-red-500 font-bold"
-        elsif earning?
-      "text-green-500 font-bold"
-        elsif investment?
-      "text-blue-500 font-bold"
-        else
-      ""
-    end
-
-    "<span class=\"#{css_class}\">#{value}</span>"
+    "<span class=\"text-#{VALUE_COLORS[kind]}-500 font-bold\">#{value}</span>"
   end
 end
