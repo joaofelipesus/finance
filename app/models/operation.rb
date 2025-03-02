@@ -39,22 +39,11 @@ class Operation < ApplicationRecord
     ActiveRecord::Base.transaction do
       operation.save!
 
-      # TODO: move to account
       account = operation.account
-      account.update!(amount: account.amount + operation.value) if operation.earning?
-      # TODO: handle investment correctly
-      account.update(amount: account.amount - operation.value) if operation.investment?
-      if operation.spend?
-        if operation.credit_card?
-          # TODO: add saldo devedor no cartão de credito
-        else
-          account.update(amount: account.amount - operation.value)
-        end
-      end
+      account.update_amount(operation:)
 
       operation
-    rescue ActiveRecord::RecordInvalid => e
-      debugger
+    rescue ActiveRecord::RecordInvalid
       operation
     end
   end
