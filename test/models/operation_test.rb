@@ -41,4 +41,12 @@ class OperationTest < ActiveSupport::TestCase
     assert_equal @operation.valid?, false
     assert_equal @operation.errors[:date], [ "can't be blank" ]
   end
+
+  test "defines PAYMENT_METHOD_OPTIONS enum with the correct values" do
+    assert_equal Operation::PAYMENT_METHOD_OPETIONS, {
+      credit_card: "credit_card",
+      debit: "debit",
+      pix: "pix"
+    }
+  end
 end

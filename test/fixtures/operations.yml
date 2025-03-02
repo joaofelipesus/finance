@@ -6,6 +6,7 @@ salary_payment:
   description: salary
   account: main_account
   date: 2025-02-01
+  payment_method: pix
 
 new_shoes_operation:
   kind: spend
@@ -13,3 +14,4 @@ new_shoes_operation:
   description: Buy new shoes
   account: main_account
   date: 2025-02-15
+  payment_method: credit_card

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_19_235501) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_02_174418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -35,6 +35,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_19_235501) do
     t.decimal "value", precision: 15, scale: 2, comment: "Monetary value of the operation"
     t.text "description", comment: "Operation description"
     t.date "date", comment: "When the operation happend"
+    t.string "payment_method", comment: "A enum backed by a string that defines the operation payment method."
     t.index ["account_id"], name: "index_operations_on_account_id"
   end
 

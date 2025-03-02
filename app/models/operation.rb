@@ -13,9 +13,16 @@ class Operation < ApplicationRecord
     "investment" => "#3498DB" # Blue
   }.freeze
 
+  PAYMENT_METHOD_OPETIONS = {
+    credit_card: "credit_card",
+    debit: "debit",
+    pix: "pix"
+  }.freeze
+
   belongs_to :account
 
   validates :value, :kind, :date, presence: true
 
   enum :kind, KIND_OPTIONS
+  enum :payment_method, PAYMENT_METHOD_OPETIONS
 end
