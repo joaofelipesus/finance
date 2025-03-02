@@ -4,13 +4,16 @@ require "test_helper"
 
 class OperationTest < ActiveSupport::TestCase
   setup do
-    @operation = Operation.new(
+    @account = accounts(:main_account)
+    @operation_params = {
       value: 100,
-      account: accounts(:main_account),
+      account: @account,
       kind: :spend,
       description: "UFC night with friends",
-      date: 2.days.ago
-    )
+      date: 2.days.ago,
+      payment_method: :pix
+    }
+    @operation = Operation.new(@operation_params)
   end
 
   test "defines KIND_OPTIONS constant with the correct values" do
@@ -75,5 +78,41 @@ class OperationTest < ActiveSupport::TestCase
     result = @operation.display_value
 
     assert_equal result, "<span class=\"text-blue-500 font-bold\">100.0</span>"
+  end
+
+  test "#create_and_update_account create a new operation and update account ammount (earning)" do
+    initial_amount = @account.amount
+    @operation_params[:kind] = :earning
+
+    assert_difference("Operation.count", 1) do
+      Operation.create_and_update_account(@operation_params)
+    end
+
+    @account.reload
+    assert_equal @account.amount, initial_amount + @operation_params[:value]
+  end
+
+  test "#create_and_update_account create a new operation and update account ammount (investment)" do
+    initial_amount = @account.amount
+    @operation_params[:kind] = :investment
+
+    assert_difference("Operation.count", 1) do
+      Operation.create_and_update_account(@operation_params)
+    end
+
+    @account.reload
+    assert_equal @account.amount, initial_amount - @operation_params[:value]
+  end
+
+  test "#create_and_update_account create a new operation and update account ammount (spend)" do
+    initial_amount = @account.amount
+    @operation_params[:kind] = :spend
+
+    assert_difference("Operation.count", 1) do
+      Operation.create_and_update_account(@operation_params)
+    end
+
+    @account.reload
+    assert_equal @account.amount, initial_amount - @operation_params[:value]
   end
 end
