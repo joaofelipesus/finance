@@ -21,7 +21,7 @@ class Operation < ApplicationRecord
 
   belongs_to :account
 
-  validates :value, :kind, :date, presence: true
+  validates :value, :kind, :date, :payment_method, presence: true
 
   enum :kind, KIND_OPTIONS
   enum :payment_method, PAYMENT_METHOD_OPETIONS

@@ -27,7 +27,8 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
             date: @operation.date,
             description: @operation.description,
             kind: @operation.kind,
-            value: @operation.value
+            value: @operation.value,
+            payment_method: @operation.payment_method
           }
         }
       )
@@ -55,7 +56,8 @@ class OperationsControllerTest < ActionDispatch::IntegrationTest
           date: @operation.date,
           description: @operation.description,
           kind: @operation.kind,
-          value: @operation.value
+          value: @operation.value,
+          payment_method: @operation.payment_method
         }
       }
     )

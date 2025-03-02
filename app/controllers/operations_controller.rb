@@ -57,6 +57,6 @@ class OperationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def operation_params
-    params.expect(operation: [ :kind, :value, :description, :account_id, :date ])
+    params.expect(operation: [ :kind, :value, :description, :account_id, :date, :payment_method ])
   end
 end

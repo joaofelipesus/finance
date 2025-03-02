@@ -26,6 +26,24 @@
   </div>
 
   <div class="my-5">
+    <%= form.label :payment_method %>
+    <%=
+      form.select :payment_method,
+        options_for_select(Operation::PAYMENT_METHOD_OPETIONS),
+        { include_blank: true},
+        {
+          class: [
+            "form-item",
+            {
+              "form-item--valid": operation.errors[:kind].none?,
+              "form-item--invalid": operation.errors[:kind].any?
+            }
+          ]
+        }
+    %>
+  </div>
+
+  <div class="my-5">
     <%= form.label :value %>
     <%=
       form.text_field :value,
