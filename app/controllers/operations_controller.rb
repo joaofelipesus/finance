@@ -2,6 +2,7 @@
 
 class OperationsController < ApplicationController
   before_action :set_operation, only: %i[ show edit update destroy ]
+  before_action :set_accounts, only: %i[new edit]
 
   # GET /operations or /operations.json
   def index
@@ -53,6 +54,10 @@ class OperationsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_operation
     @operation = Operation.find(params.expect(:id))
+  end
+
+  def set_accounts
+    @accounts = Account.order(name: :asc)
   end
 
   # Only allow a list of trusted parameters through.

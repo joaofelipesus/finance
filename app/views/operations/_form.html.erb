@@ -14,7 +14,9 @@
   <div class="my-5">
     <%= form.label :kind %>
     <%=
-      form.text_field :kind,
+      form.select :kind,
+        options_for_select(Operation::KIND_OPTIONS, operation.kind),
+        { include_blank: true },
         class: [
           "form-item",
           {
@@ -29,8 +31,8 @@
     <%= form.label :payment_method %>
     <%=
       form.select :payment_method,
-        options_for_select(Operation::PAYMENT_METHOD_OPETIONS),
-        { include_blank: true},
+        options_for_select(Operation::PAYMENT_METHOD_OPETIONS, operation.payment_method),
+        { include_blank: true },
         {
           class: [
             "form-item",
@@ -74,7 +76,9 @@
   <div class="my-5">
     <%= form.label :account_id %>
     <%=
-      form.text_field :account_id,
+      form.select :account_id,
+        options_from_collection_for_select(@accounts, :id, :name, operation.account_id),
+        { include_blank: true },
         class: [
           "form-item", {
             "form-item--valid": operation.errors[:account_id].none?,

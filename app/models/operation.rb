@@ -25,4 +25,18 @@ class Operation < ApplicationRecord
 
   enum :kind, KIND_OPTIONS
   enum :payment_method, PAYMENT_METHOD_OPETIONS
+
+  def display_value
+    css_class = if spend?
+      "text-red-500 font-bold"
+        elsif earning?
+      "text-green-500 font-bold"
+        elsif investment?
+      "text-blue-500 font-bold"
+        else
+      ""
+    end
+
+    "<span class=\"#{css_class}\">#{value}</span>"
+  end
 end

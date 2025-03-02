@@ -49,4 +49,31 @@ class OperationTest < ActiveSupport::TestCase
       pix: "pix"
     }
   end
+
+  test ".display_value returns a string with the correct css classes when its a spend?" do
+    @operation.kind = :spend
+    @operation.value = 100.0
+
+    result = @operation.display_value
+
+    assert_equal result, "<span class=\"text-red-500 font-bold\">100.0</span>"
+  end
+
+  test ".display_value returns a string with the correct css classes when its a earning?" do
+    @operation.kind = :earning
+    @operation.value = 100.0
+
+    result = @operation.display_value
+
+    assert_equal result, "<span class=\"text-green-500 font-bold\">100.0</span>"
+  end
+
+  test ".display_value returns a string with the correct css classes when its a investment?" do
+    @operation.kind = :investment
+    @operation.value = 100.0
+
+    result = @operation.display_value
+
+    assert_equal result, "<span class=\"text-blue-500 font-bold\">100.0</span>"
+  end
 end
