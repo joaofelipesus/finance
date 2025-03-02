@@ -7,6 +7,7 @@ class HomeController < ApplicationController
     @operation = Operation.new
     @page = params[:page] || 1
     @operations = fetch_operations
+    @accounts = Account.order(name: :asc)
   end
 
   # TODO: add coverage
@@ -18,7 +19,8 @@ class HomeController < ApplicationController
         update_operation_form,
         success_message,
         update_operations_table,
-        update_chart
+        update_chart,
+        update_accounts
       ]
     else
       # TODO: handle errors
@@ -72,9 +74,14 @@ class HomeController < ApplicationController
   end
 
   def update_chart
+    turbo_stream.replace("chart", partial: "home/components/chart")
+  end
+
+  def update_accounts
     turbo_stream.replace(
-      "chart",
-      partial: "home/components/chart"
+      "accounts-table",
+      partial: "home/components/accounts_list",
+      locals: { accounts: Account.order(name: :asc) }
     )
   end
 end
