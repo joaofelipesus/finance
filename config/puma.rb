@@ -43,8 +43,8 @@ plugin :solid_queue if ENV["SOLID_QUEUE_IN_PUMA"]
 pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
 
 # Bind SSL port to deploy app on self hosted environment.
-ssl_bind '0.0.0.0', '3001', {
-  key: 'config/ssl/server.key',
-  cert: 'config/ssl/server.crt',
-  verify_mode: 'none'
+ssl_bind "0.0.0.0", "3001", {
+  key: "config/ssl/server.key",
+  cert: "config/ssl/server.crt",
+  verify_mode: "none"
 }

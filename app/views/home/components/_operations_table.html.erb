@@ -15,7 +15,7 @@
           <td><%= operation.account.name %></td>
           <td><%= operation.kind %></td>
           <td><%= operation.date %></td>
-          <td><%= operation.value %></td>
+          <td><%= operation.display_value.html_safe %></td>
           <td class="text-sm font-medium">
             <%= link_to "Details", operation, class: "text-indigo-600 hover:text-indigo-900" %>
           </td>

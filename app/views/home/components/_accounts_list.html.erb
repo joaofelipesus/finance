@@ -1,0 +1,24 @@
+<div id="accounts-table" class="bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-bold mb-4">
+    Accounts
+  </h2>
+
+  <table class="simple-table">
+    <thead>
+      <tr>
+        <th>Name</th></th>
+        <th>Amount</th>
+        <th>Updated at</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% accounts.each do |account| %>
+        <tr>
+          <td><%= account.name %></td>
+          <td><%= account.amount %></td>
+          <td><%= account.updated_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

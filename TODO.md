@@ -1,3 +1,5 @@
+- Adapt home form to handle distinct operation kinds, make related fields enabled when answering the form;
+- Support investment from accont X to account Y, investment kind
 - Stryle Accounts views (show, index, new, edit);
 - Stryle Operations views (show, index, new, edit);
 - Add coverage to home controller, new operation form;

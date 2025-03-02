@@ -6,6 +6,9 @@
       <%= render partial: "home/components/operation_form", locals: { operation: @operation } %>
     </div>
     <div class="w-1/2">
+      <div class="mb-8">
+        <%= render partial: "home/components/accounts_list", locals: { accounts: @accounts } %>
+      </div>
       <%= render partial: "home/components/chart" %>
     </div>
   </div>

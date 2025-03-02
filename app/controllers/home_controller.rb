@@ -7,18 +7,20 @@ class HomeController < ApplicationController
     @operation = Operation.new
     @page = params[:page] || 1
     @operations = fetch_operations
+    @accounts = Account.order(name: :asc)
   end
 
   # TODO: add coverage
   def create_operation
-    operation = Operation.new(operation_params)
+    operation = Operation.create_and_update_account(operation_params)
 
     if operation.save
       render turbo_stream: [
         update_operation_form,
         success_message,
         update_operations_table,
-        update_chart
+        update_chart,
+        update_accounts
       ]
     else
       # TODO: handle errors
@@ -33,7 +35,7 @@ class HomeController < ApplicationController
   private
 
   def operation_params
-    params.expect(operation: [ :kind, :value, :description, :account_id, :date ])
+    params.expect(operation: [ :kind, :value, :description, :account_id, :date, :payment_method ])
   end
 
   # TODO: refactor
@@ -72,9 +74,14 @@ class HomeController < ApplicationController
   end
 
   def update_chart
+    turbo_stream.replace("chart", partial: "home/components/chart")
+  end
+
+  def update_accounts
     turbo_stream.replace(
-      "chart",
-      partial: "home/components/chart"
+      "accounts-table",
+      partial: "home/components/accounts_list",
+      locals: { accounts: Account.order(name: :asc) }
     )
   end
 end
